@@ -1,0 +1,40 @@
+
+.panel {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 20px;
+
+    &.editor {
+        width: 40%;
+        position: absolute; top: 0; left: 0;
+    }
+
+    &.preview {
+        width: 60%;
+        position: absolute; top: 0; left: 40%;
+    }
+}
+
+
+.panel.editor {
+    padding-top: 70px;
+    border-right: 2px solid $white;
+
+    textarea {
+        width: 100%;
+        min-height: 300px;
+        box-sizing: border-box;
+        padding: 10px;
+        resize: vertical;
+    }
+}
+
+
+.panel.preview {
+    #preview-iframe {
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        position: absolute; top: 0; left: 0;
+    }
+}

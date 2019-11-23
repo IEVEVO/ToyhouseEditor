@@ -1,0 +1,31 @@
+
+body {
+    background: $darkgrey;
+    color: $white;
+    font-family: sans-serif;
+}
+
+.App {
+    height: 100%;
+}
+
+
+.navbar {
+    width: 100%;
+    display: flex;
+    position: absolute; top: 0; left: 0;
+    
+    a {
+        flex: 1;
+        color: $darkgrey;
+        text-align: center;
+        text-decoration: none;
+        padding: 10px;
+        background: $white;
+        border-bottom: 2px solid $white;
+
+        &.active {
+            border-bottom: 2px dashed $darkgrey;
+        }
+    }
+}
