@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, MemoryRouter} from "react-router-dom";
 
 import "./styles.scss";
 
@@ -21,7 +21,10 @@ export class App extends React.Component {
 				max-width: 550px; 
 				font-size: 10px; 
 				letter-spacing: 1px;
-			}`
+			}`,
+
+			theme: "night",
+			removeComments: false
 		};
 
 		this.update = this.update.bind(this);

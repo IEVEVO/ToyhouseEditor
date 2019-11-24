@@ -1,20 +1,26 @@
 
-export function removeHTMLComments(html) {
+export function removeHTMLComments(html, removeComments=false) {
     // removes html comments
-    var re = /(?=<!--)([\s\S]*?)-->/gi;
+    if(!removeComments) {
+        return html;
+    }
 
+    var re = /(?=<!--)([\s\S]*?)-->/gi;
     return html.replace(re, "");
 }
 
-export function removeCSSComments(css) {
+export function removeCSSComments(css, removeComments=false) {
     // removes css comments
-    var re = /-/gi;
+    if(!removeComments) {
+        return css;
+    }
 
-    return css;
+    var re = /\/\*[^*]*\*+([^/*][^*]*\*+)*\//gi;
+    return css.replace(re, "");
 }
 
 
-export function applyClassesToHTML(html, css) {
+export function applyClassesToHTML(html, css, removeComments=false) {
     // takes HTML and CSS as strings and applies the CSS classes as inline style attributes.
     // returns only the new HTML
 
@@ -24,7 +30,7 @@ export function applyClassesToHTML(html, css) {
 
     var tmp;
 
-    while((tmp = cssRegex.exec(removeCSSComments(css)) ) !== null) {
+    while((tmp = cssRegex.exec(removeCSSComments(css, removeComments)) ) !== null) {
         if(tmp !== null) {
             cssClasses[ tmp[1] ] = tmp[2].replace(/[\t\n{}]+/gm, "").trim();
         }

@@ -38,3 +38,12 @@ button {
         background: $lightgrey;
     }
 }
+
+
+.divider {
+    display: block;
+    height: 1px;
+    width: 90%;
+    background: $midgrey;
+    margin: 25px auto 25px auto;
+}

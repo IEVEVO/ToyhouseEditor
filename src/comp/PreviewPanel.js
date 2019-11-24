@@ -11,15 +11,20 @@ export class PreviewPanel extends React.Component {
         };
     }
 
+    componentDidMount() {
+        // render whatever's in the fields on mount
+        this.componentDidUpdate();
+    }
+
     componentDidUpdate(prevProps) {
         // update html in frame
         var frame = document.getElementById("preview-iframe"),
             doc = frame.contentDocument || frame.contentWindow.document;
         
-        doc.body.innerHTML = applyClassesToHTML(this.props.app.state.html, this.props.app.state.css);
+        doc.body.innerHTML = applyClassesToHTML(this.props.app.state.html, this.props.app.state.css, this.props.app.state.removeComments);
 
         // determine height
-        if(prevProps.app.state.html !== this.props.app.state.html) {
+        if(prevProps !== undefined && (prevProps.app.state.html !== this.props.app.state.html)) {
             this.setState({
                 frameHeight: doc.body.scrollHeight
             });
@@ -29,7 +34,7 @@ export class PreviewPanel extends React.Component {
 
     render() {
         return (
-            <div className="panel preview">
+            <div className={"panel preview " + this.props.app.state.theme}>
                 <ToyhouseProfile app={this.props.app}>
                     <iframe
                         title="Profile"

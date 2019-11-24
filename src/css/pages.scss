@@ -43,8 +43,11 @@
 
 
 .panel.editor {
-    padding-top: 70px;
+    padding-top: 80px;
+    background: $darkgrey;
     border-right: 2px solid $white;
+    z-index: 999;
+    transition: 0.4s width;
 
     textarea {
         background: $darkgrey;
@@ -54,11 +57,18 @@
         min-height: 300px;
         box-sizing: border-box;
         padding: 10px;
+        font-family: monospace;
+        font-size: 1.1em;
         resize: vertical;
 
         &:focus {
             outline: 0;
         }
+    }
+
+
+    &.open {
+        width: 100%;
     }
 }
 
@@ -77,5 +87,18 @@
             background: rgba(255,255,255,0.1);
             border: 1px solid $white;
         }
+    }
+}
+
+
+.settings-page {
+    .setting-container {
+        width: 100%; max-width: 500px;
+        display: grid;
+        grid-template-columns: 60% 40%;
+        padding: 20px;
+        background: $midgrey;
+        border-radius: 15px;
+        margin: 0 auto 10px auto;
     }
 }
