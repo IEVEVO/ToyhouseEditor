@@ -15,8 +15,8 @@ $red: rgb(158, 70, 58);
 
 
 // THEMES
-/*.preview {
-    @import "css/themes/main.css";
+.preview {
+    //@import "css/themes/main.css";
 
     &.default {
         @import "css/themes/default";
@@ -36,8 +36,4 @@ $red: rgb(158, 70, 58);
     &.pink-velvet-cake {
         @import "css/themes/pink-velvet-cake";
     }
-}*/
-
-.preview.night {
-    @import "css/themes/night";
 }
