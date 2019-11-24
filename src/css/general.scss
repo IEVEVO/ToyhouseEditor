@@ -1,3 +1,7 @@
+html {
+    min-height: 100%;
+}
+
 
 body {
     background: $darkgrey;
@@ -10,22 +14,27 @@ body {
 }
 
 
-.navbar {
-    width: 100%;
-    display: flex;
-    position: absolute; top: 0; left: 0;
-    
-    a {
-        flex: 1;
-        color: $darkgrey;
-        text-align: center;
-        text-decoration: none;
-        padding: 10px;
-        background: $white;
-        border-bottom: 2px solid $white;
+button {
+    padding: 8px 12px 8px 12px;
+    border-radius: 5px;
+    margin: 0 3px 0 3px;
+    background: $midgrey;
+    color: $white;
+    border: 0;
 
-        &.active {
-            border-bottom: 2px dashed $darkgrey;
-        }
+    &.success {
+        background: $green;
+    }
+
+    &.primary {
+        background: $blue;
+    }
+
+    &.danger {
+        background: $red;
+    }
+
+    &:hover {
+        background: $lightgrey;
     }
 }
