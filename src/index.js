@@ -50,10 +50,10 @@ export class App extends React.Component {
 	render() {
         return (
 			<div className="App">
-				<BrowserRouter>
+				<MemoryRouter>
 					<EditorPanel app={this} />
 					<PreviewPanel app={this} />
-				</BrowserRouter>
+				</MemoryRouter>
 			</div>
         );
     }
