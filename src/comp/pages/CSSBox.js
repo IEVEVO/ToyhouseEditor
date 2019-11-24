@@ -1,4 +1,6 @@
 import React from "react";
+import Editor from '@monaco-editor/react';
+
 
 export class CSSBox extends React.Component {
     constructor(props) {
@@ -6,6 +8,7 @@ export class CSSBox extends React.Component {
 
         this.state = {
             code: this.props.app.state.css,
+            getCode: () => {},
             unsaved: false
         };
 
@@ -17,18 +20,13 @@ export class CSSBox extends React.Component {
     componentWillUnmount() {
         // save if unsaved
         if(this.state.unsaved) {
-
-            if( window.confirm("Do you want to save your changes to CSS?") ) {
-                this.submit("autosave");
-            }
-
+            this.submit("autosave");
         }
     }
 
-	update(e) {
-		var tmp = {unsaved: true};
-		tmp[e.target.name] = e.target.value;
-		this.setState(tmp);
+	update(code) {
+        //console.log(code());
+		this.setState({getCode: code});
     }
     
     submit(e) {
@@ -36,7 +34,7 @@ export class CSSBox extends React.Component {
 
         if(e === "autosave" || e.target.name === "submit" || (e.target.name === "code" && e.altKey && key === 83)) {
             // alt + s
-            this.props.app.updateCSS(this.state.code);
+            this.props.app.updateCSS( this.state.getCode() );
             this.setState({unsaved: false});
 
             if(typeof e === "event") {
@@ -63,22 +61,26 @@ export class CSSBox extends React.Component {
     render() {
         return (
             <div className="css-box">
-                <textarea 
+                <Editor 
+                    theme="dark"
                     name="code"
                     placeholder="Enter your CSS code here"
+                    language="css"
+                    options={{
+                        wordWrap: "on",
+                        fontSize: 15,
+                        acceptSuggestionOnCommitCharacter: false
+                    }}
                     value={this.state.code}
-                    onChange={this.update}
-                    onKeyDown={this.submit}
+                    editorDidMount={this.update}
                 />
+                
+
+                <button className="submit success" name="submit" onClick={this.submit}>Save</button>
 
                 {
                     this.state.unsaved ? 
-                    <button className="success" name="submit" onClick={this.submit}>Save (alt+s)</button> : ""
-                }
-
-                {
-                    this.state.unsaved ? 
-                    <button className="danger" name="revert" onClick={this.revert}>Revert changes</button> : ""
+                    <button className="submit danger" name="revert" onClick={this.revert}>Revert changes</button> : ""
                 }
             </div>
         );

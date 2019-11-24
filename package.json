@@ -6,6 +6,8 @@
 	"homepage": "./",
 	"main": "src/index.js",
 	"dependencies": {
+		"@monaco-editor/react": "^2.3.0",
+		"prismjs": "^1.17.1",
 		"react": "16.8.6",
 		"react-dom": "16.8.6",
 		"react-router": "5.1.2",

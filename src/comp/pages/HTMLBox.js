@@ -1,4 +1,6 @@
 import React from "react";
+import Editor from '@monaco-editor/react';
+
 
 export class HTMLBox extends React.Component {
     constructor(props) {
@@ -6,6 +8,7 @@ export class HTMLBox extends React.Component {
 
         this.state = {
             code: this.props.app.state.html,
+            getCode: () => {},
             unsaved: false
         };
 
@@ -17,18 +20,13 @@ export class HTMLBox extends React.Component {
     componentWillUnmount() {
         // save if unsaved
         if(this.state.unsaved) {
-
-            if( window.confirm("Do you want to save your changes to HTML?") ) {
-                this.submit("autosave");
-            }
-
+            this.submit("autosave");
         }
     }
 
-	update(e) {
-		var tmp = {unsaved: true};
-		tmp[e.target.name] = e.target.value;
-		this.setState(tmp);
+	update(code) {
+        //console.log(code());
+		this.setState({getCode: code});
     }
     
     submit(e) {
@@ -42,7 +40,7 @@ export class HTMLBox extends React.Component {
 
         if(e === "autosave" || e.target.name === "submit" || (e.target.name === "code" && e.altKey && key === 83)) {
             // alt + s
-            this.props.app.updateHTML(this.state.code);
+            this.props.app.updateHTML( this.state.getCode() );
             this.setState({unsaved: false});
 
             if(typeof e === "event") {
@@ -69,22 +67,26 @@ export class HTMLBox extends React.Component {
     render() {
         return (
             <div className="html-box">
-                <textarea 
+                <Editor 
+                    theme="dark"
                     name="code"
                     placeholder="Enter your HTML code here"
+                    language="html"
+                    options={{
+                        wordWrap: "on",
+                        fontSize: 14,
+                        acceptSuggestionOnCommitCharacter: false
+                    }}
                     value={this.state.code}
-                    onChange={this.update}
-                    onKeyDown={this.submit}
+                    editorDidMount={this.update}
                 />
 
-                {
-                    this.state.unsaved ? 
-                    <button className="success" name="submit" onClick={this.submit}>Save (alt+s)</button> : ""
-                }
+                
+                <button className="submit success" name="submit" onClick={this.submit}>Save</button>
 
                 {
                     this.state.unsaved ? 
-                    <button className="danger" name="revert" onClick={this.revert}>Revert changes</button> : ""
+                    <button className="submit danger" name="revert" onClick={this.revert}>Revert changes</button> : ""
                 }
             </div>
         );
