@@ -24,6 +24,7 @@ button {
     background: $midgrey;
     color: $white;
     border: 0;
+    cursor: pointer;
 
     &.success {
         background: $green;

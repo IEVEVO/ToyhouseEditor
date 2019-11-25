@@ -31,13 +31,25 @@
         text-align: center;
         text-decoration: none;
         padding: 10px;
+        font-size: 15px;
         margin: 0 4px 0 4px;
         background: $white;
         border-radius: 50px;
+        transition: 0.3s flex, 0.2s background, 0.1s color;
 
         &.active {
             background: $blue;
             color: $white;
+            flex: 1.2 $i;
+        }
+
+        &.small {
+            flex: 0.5;
+            font-size: 15px;
+
+            &.active {
+                flex: 0.7 $i;
+            }
         }
     }
 }
@@ -51,23 +63,6 @@
     z-index: 999;
     transition: 0.4s width;
 
-    /*textarea {
-        background: $darkgrey;
-        border: 1px solid $white;
-        color: $white;
-        width: 100%;
-        min-height: 300px;
-        box-sizing: border-box;
-        padding: 10px;
-        font-family: monospace;
-        font-size: 1.1em;
-        resize: vertical;
-
-        &:focus {
-            outline: 0;
-        }
-    }*/
-
     .html-box, .css-box {
         min-height: calc(100% - 50px);
         height: calc(100% - 50px);
@@ -77,7 +72,6 @@
         float: right;
         margin: 10px 0 0 5px;
     }
-
 
     &.open {
         width: 100%;
