@@ -22,10 +22,15 @@ export class EditorPanel extends React.Component {
 
     render() {
         return (
-            <div className={"panel editor " + (this.state.open ? "open" : "")}>
+            <div 
+                className={"panel editor " + (this.state.open ? "open" : "")}
+                style={{
+                    width: this.props.app.state.editorWidth + "%"
+                }}
+            >
                 <div className="the-navbar">
-                    <NavLink to="/" style={{flex: 0.5}} exact>HTML</NavLink>
-                    <NavLink to="/css" style={{flex: 0.5}}>CSS</NavLink>
+                    <NavLink className="small" to="/" exact>HTML</NavLink>
+                    <NavLink className="small" to="/css">CSS</NavLink>
                     <NavLink to="/export">Export</NavLink>
                     <NavLink to="/settings">Settings</NavLink>
 

@@ -5,7 +5,7 @@
     height: 100%;
     max-height: 100%;
     overflow: auto;
-    padding: 20px;
+    padding: 20px 20px 70px 20px;
 
     &.editor {
         width: 40%;
@@ -21,7 +21,7 @@
 
 .panel.editor .the-navbar {
     width: 90%;
-    margin: 10px 5% 0 5%;
+    margin: 1px 5% 0 5%;
     display: flex;
     position: absolute; top: 0; left: 0;
     
@@ -31,13 +31,24 @@
         text-align: center;
         text-decoration: none;
         padding: 10px;
-        margin: 0 4px 0 4px;
+        font-size: 15px;
+        margin: 0 1px 0 1px;
         background: $white;
-        border-radius: 50px;
+        transition: 0.3s flex, 0.2s background, 0.1s color;
 
         &.active {
             background: $blue;
             color: $white;
+            flex: 1.2 $i;
+        }
+
+        &.small {
+            flex: 0.5;
+            font-size: 15px;
+
+            &.active {
+                flex: 0.7 $i;
+            }
         }
     }
 }
@@ -48,25 +59,8 @@
     padding-top: 80px;
     background: $darkgrey;
     border-right: 2px solid $white;
-    z-index: 999;
+    z-index: 998;
     transition: 0.4s width;
-
-    /*textarea {
-        background: $darkgrey;
-        border: 1px solid $white;
-        color: $white;
-        width: 100%;
-        min-height: 300px;
-        box-sizing: border-box;
-        padding: 10px;
-        font-family: monospace;
-        font-size: 1.1em;
-        resize: vertical;
-
-        &:focus {
-            outline: 0;
-        }
-    }*/
 
     .html-box, .css-box {
         min-height: calc(100% - 50px);
@@ -78,14 +72,14 @@
         margin: 10px 0 0 5px;
     }
 
-
     &.open {
-        width: 100%;
+        width: 100% $i;
     }
 }
 
 
 .panel.preview {
+    background: #222;
     min-height: 100%;
     padding: 0;
     position: absolute; top: 0; left: 40%;
@@ -102,14 +96,17 @@
     }
 
     #preview-div {
-        min-height: 30px;
+        min-height: 0px;
     }
 }
 
 
-.settings-page {
+.settings-page { 
+    max-width: 500px;
+    margin: 0 auto 0 auto;
+
     .setting-container {
-        width: 100%; max-width: 500px;
+        width: 100%;
         display: grid;
         grid-template-columns: 60% 40%;
         padding: 20px;
@@ -121,6 +118,54 @@
             width: 100%;
             padding: 4px;
             font-size: 14px;
+        }
+    }
+}
+
+.profile-selector {
+    width: 100%;
+
+    .profile-icon {
+        width: 100%;
+        padding: 8px 15px 8px 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        display: grid;
+        grid-template-columns: auto 80px;
+
+        &:hover, &.active {
+            background: rgba(255,255,255,0.05);
+
+            .title {                
+                color: $white;
+            }
+
+            .date {
+                color: $lightgrey;
+            }
+        }
+
+        &.active {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .title {
+            min-height: 20px;
+            display: block;
+            font-size: 2em;
+            font-family: monospace;
+            color: $lightgrey;
+            cursor: pointer;
+        }
+
+        .date {
+            color: $midgrey;
+            font-family: monospace;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin-top: 9px;
         }
     }
 }
@@ -138,5 +183,23 @@
         color: $white;
         border: 0;
         padding: 5px 8px 5px 8px;
+    }
+}
+
+
+.page-resizer {
+    display: block;
+    width: 10px;
+    height: 100%;
+    background: rgba(255,255,255,0);
+    cursor: ew-resize;
+    z-index: 999;
+    user-select: none;
+    transition: 0.1s background, 0.1s width;
+    position: absolute; top: 0; left: 40%;
+
+    &.active {
+        width: 20px;
+        background: rgba(255,255,255,0.5);
     }
 }

@@ -1,13 +1,9 @@
 import React from "react";
-import { ExportButton } from "../ExportButton";
+import { ProfileSelector } from "../settings/ProfileSelector";
 
 export class SettingsPage extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-
-        };
 
 		this.update = this.update.bind(this);
     }
@@ -72,13 +68,9 @@ export class SettingsPage extends React.Component {
                 <div className="divider" />
 
 
-                <div className="saves user-profiles">
-                    Saved user profiles
-                </div>
-                
-                <div className="saves user-profiles">
-                    Saved character profiles
-                </div>
+                <ProfileSelector 
+                    app={this.props.app}
+                />
 
             </div>
         );

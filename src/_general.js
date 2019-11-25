@@ -1,4 +1,10 @@
 
+export function stringifyDate(date) {
+    // converts date obj to string
+    return date.toUTCString();
+}
+
+
 export function removeHTMLComments(html, removeComments=false) {
     // removes html comments
     if(!removeComments) {

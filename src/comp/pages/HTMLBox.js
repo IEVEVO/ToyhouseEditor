@@ -1,5 +1,6 @@
 import React from "react";
 import Editor from '@monaco-editor/react';
+import { SaveButton } from "../SaveButton";
 
 
 export class HTMLBox extends React.Component {
@@ -9,7 +10,9 @@ export class HTMLBox extends React.Component {
         this.state = {
             code: this.props.app.state[this.props.language],
             getCode: () => {},
-            unsaved: false
+            unsaved: false,
+
+            updateDisabled: false
         };
 
 		this.update = this.update.bind(this);
@@ -30,9 +33,24 @@ export class HTMLBox extends React.Component {
     }
     
     submit(e) {
-        this.props.app.updateHTML( this.state.getCode() );
-        this.setState({unsaved: false});
+        this.setState({unsaved: false, updateDisabled: true});
         e.preventDefault();
+
+        switch(this.props.language) {
+            case "html":
+                this.props.app.updateHTML( this.state.getCode() );
+                break;
+            case "css":
+                this.props.app.updateCSS( this.state.getCode() );
+                break;
+            default:
+                break;
+        }
+
+
+        window.setTimeout(() => {
+            this.setState({updateDisabled: false});
+        }, 300);
     }
 
     revert() {
@@ -67,9 +85,15 @@ export class HTMLBox extends React.Component {
                     editorDidMount={this.update}
                 />
                 
-                <button className="submit success" name="submit" onClick={this.submit}>Update Preview</button>
+                <button 
+                    className={"submit success " + (this.state.updateDisabled ? "disabled" : "")}
+                    name="submit" 
+                    onClick={this.submit}
+                >
+                    Update Preview
+                </button>
 
-                <button className="submit primary" name="save" onClick={this.save}>Save</button>
+                <SaveButton app={this.props.app} className="submit" />
 
                 {
                     this.state.unsaved ? 

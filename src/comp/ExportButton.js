@@ -21,12 +21,6 @@ export class ExportButton extends React.Component {
 
     export() {
         // exports
-        if(this.state.code !== "") {
-            this.setState({code: ""});
-            return;
-        }
-
-
         var code = applyClassesToHTML(this.props.html, this.props.css, false);
 
         console.log(code);
@@ -44,6 +38,7 @@ export class ExportButton extends React.Component {
             <React.Fragment>
                 <textarea 
                     value={this.state.code} 
+                    placeholder="This is where the code will end up, when you write some."
                     onClick={(e) => {
                         e.target.setSelectionRange(0, this.state.code.length);
                     }}

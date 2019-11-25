@@ -24,6 +24,8 @@ button {
     background: $midgrey;
     color: $white;
     border: 0;
+    cursor: pointer;
+    transition: 0.1s opacity;
 
     &.success {
         background: $green;
@@ -39,6 +41,11 @@ button {
 
     &:hover {
         background: $lightgrey;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.7;
     }
 }
 
