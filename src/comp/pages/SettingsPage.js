@@ -43,12 +43,12 @@ export class SettingsPage extends React.Component {
 
                     <div className="action">
                         <select name="theme" value={this.props.app.state.theme} onChange={this.props.app.update}>
-                            <option value="default" disabled>Default</option>
+                            <option value="default">Default</option>
                             <option value="night">Night</option>
-                            <option value="black-forest" disabled>Pink</option>
-                            <option value="abyssal-plain" disabled>Teal</option>
-                            <option value="apis-mellifera" disabled>Bee</option>
-                            <option value="pink-velvet-cake" disabled>Pink again</option>
+                            <option value="black-forest">Pink</option>
+                            <option value="abyssal-plain">Teal</option>
+                            <option value="apis-mellifera">Bee</option>
+                            <option value="pink-velvet-cake">Pink again</option>
                         </select>
                     </div>
                 </div>
