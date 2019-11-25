@@ -1,8 +1,8 @@
 import React from "react";
 import {Route, NavLink} from "react-router-dom";
 import { HTMLBox } from "./pages/HTMLBox";
-import { CSSBox } from "./pages/CSSBox";
 import { SettingsPage } from "./pages/SettingsPage";
+import { ExportPage } from "./pages/ExportPage";
 
 export class EditorPanel extends React.Component {
     constructor(props) {
@@ -24,8 +24,9 @@ export class EditorPanel extends React.Component {
         return (
             <div className={"panel editor " + (this.state.open ? "open" : "")}>
                 <div className="the-navbar">
-                    <NavLink to="/" exact>HTML</NavLink>
-                    <NavLink to="/css">CSS</NavLink>
+                    <NavLink to="/" style={{flex: 0.5}} exact>HTML</NavLink>
+                    <NavLink to="/css" style={{flex: 0.5}}>CSS</NavLink>
+                    <NavLink to="/export">Export</NavLink>
                     <NavLink to="/settings">Settings</NavLink>
 
                     <button onClick={this.toggle}>
@@ -33,16 +34,21 @@ export class EditorPanel extends React.Component {
                     </button>
                 </div>
 
+
                 <Route path="/" exact render={(props) => {
-                    return <HTMLBox app={this.props.app} />
+                    return <HTMLBox app={this.props.app} language="html" />
                 }} />
 
                 <Route path="/css" render={(props) => {
-                    return <CSSBox app={this.props.app} />
+                    return <HTMLBox app={this.props.app} language="css" />
                 }} />
 
                 <Route path="/settings" render={(props) => {
                     return <SettingsPage app={this.props.app} />
+                }} />
+
+                <Route path="/export" render={(props) => {
+                    return <ExportPage app={this.props.app} />
                 }} />
             </div>
         );

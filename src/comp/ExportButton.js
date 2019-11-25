@@ -1,5 +1,6 @@
 import React from "react";
 import { applyClassesToHTML } from "../_general";
+import copy from "copy-to-clipboard";
 
 export class ExportButton extends React.Component {
     constructor(props) {
@@ -11,6 +12,11 @@ export class ExportButton extends React.Component {
         };
 
 		this.export = this.export.bind(this);
+		this.copy = this.copy.bind(this);
+    }
+
+    componentDidMount() {
+        this.export();
     }
 
     export() {
@@ -27,24 +33,26 @@ export class ExportButton extends React.Component {
         this.setState({code: code});
     }
 
+    copy() {
+        copy(this.state.code);
+        window.alert("Code copied to clipboard.");
+    }
+
 
     render() {
         return (
             <React.Fragment>
-                <button onClick={this.export} className="primary">
-                    {(this.state.code === "" ? "Export" : "Close")}
-                </button>
+                <textarea 
+                    value={this.state.code} 
+                    onClick={(e) => {
+                        e.target.setSelectionRange(0, this.state.code.length);
+                    }}
+                    readOnly 
+                />
 
-                {
-                    (this.state.code !== "") ? 
-                    <textarea 
-                        value={this.state.code} 
-                        onClick={(e) => {
-                            e.target.setSelectionRange(0, this.state.code.length);
-                        }}
-                        readOnly 
-                    /> : ""
-                }
+                <button className="submit success" onClick={this.export}>Update</button>
+
+                <button className="submit" onClick={this.copy}>Copy</button>
             </React.Fragment>
         );
     }
