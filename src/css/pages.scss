@@ -60,7 +60,7 @@
     padding-top: 80px;
     background: $darkgrey;
     border-right: 2px solid $white;
-    z-index: 999;
+    z-index: 998;
     transition: 0.4s width;
 
     .html-box, .css-box {
@@ -74,7 +74,7 @@
     }
 
     &.open {
-        width: 100%;
+        width: 100% $i;
     }
 }
 
@@ -132,5 +132,23 @@
         color: $white;
         border: 0;
         padding: 5px 8px 5px 8px;
+    }
+}
+
+
+.page-resizer {
+    display: block;
+    width: 10px;
+    height: 100%;
+    background: rgba(255,255,255,0);
+    cursor: ew-resize;
+    z-index: 999;
+    user-select: none;
+    transition: 0.1s background, 0.1s width;
+    position: absolute; top: 0; left: 40%;
+
+    &.active {
+        width: 20px;
+        background: rgba(255,255,255,0.5);
     }
 }

@@ -6,6 +6,7 @@ import "./styles.scss";
 
 import { EditorPanel } from "./comp/EditorPanel";
 import { PreviewPanel } from "./comp/PreviewPanel";
+import { Resizer } from "./comp/pages/Resizer";
 
 
 export class App extends React.Component {
@@ -22,6 +23,8 @@ export class App extends React.Component {
 				font-size: 10px; 
 				letter-spacing: 1px;
 			}`,
+
+			editorWidth: 40,
 
 			theme: "night",
 			removeComments: false,
@@ -47,12 +50,17 @@ export class App extends React.Component {
 		this.setState({css: code});
 	}
 
+	updateSize(size) {
+		this.setState({editorWidth: size});
+	}
+
 
 	render() {
         return (
 			<div className="App">
 				<BrowserRouter>
 					<EditorPanel app={this} />
+					<Resizer app={this} />
 					<PreviewPanel app={this} />
 				</BrowserRouter>
 			</div>

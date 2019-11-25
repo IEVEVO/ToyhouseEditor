@@ -46,7 +46,13 @@ export class PreviewPanel extends React.Component {
 
 
         return (
-            <div className={"panel preview " + this.props.app.state.theme}>
+            <div 
+                className={"panel preview " + this.props.app.state.theme}
+                style={{
+                    width: (100 - this.props.app.state.editorWidth) + "%",
+                    left: this.props.app.state.editorWidth + "%"
+                }}
+            >
                 <ToyhouseProfile>
                     {page}
                 </ToyhouseProfile>
