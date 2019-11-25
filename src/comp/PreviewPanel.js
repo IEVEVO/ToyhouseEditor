@@ -5,6 +5,7 @@ import { CharacterProfileInner } from "./preview/CharacterProfileInner";
 import { UserProfileInner } from "./preview/UserProfileInner";
 
 export class PreviewPanel extends React.Component {
+
     componentDidMount() {
         // render whatever's in the fields on mount
         this.componentDidUpdate();

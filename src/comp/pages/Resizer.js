@@ -12,6 +12,7 @@ export class Resizer extends React.Component {
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.start = this.start.bind(this);
         this.end = this.end.bind(this);
+        this.reset = this.reset.bind(this);
     }
 
     convertToPercent(number) {
@@ -39,6 +40,11 @@ export class Resizer extends React.Component {
         this.setState({active: false});
     }
 
+    reset() {
+        this.props.app.updateSize( 40 );
+        this.setState({position: 40});
+    }
+
 
     render() {
         return (
@@ -49,8 +55,8 @@ export class Resizer extends React.Component {
                 }}
                 onMouseDown={this.start}
                 onMouseUp={this.end}
-                onMouseLeave={this.end}
                 onMouseMove={this.handleMouseMove}
+                onDoubleClick={this.reset}
             />
         );
     }

@@ -80,6 +80,7 @@
 
 
 .panel.preview {
+    background: #222;
     min-height: 100%;
     padding: 0;
     position: absolute; top: 0; left: 40%;
@@ -101,9 +102,12 @@
 }
 
 
-.settings-page {
+.settings-page { 
+    max-width: 500px;
+    margin: 0 auto 0 auto;
+
     .setting-container {
-        width: 100%; max-width: 500px;
+        width: 100%;
         display: grid;
         grid-template-columns: 60% 40%;
         padding: 20px;
@@ -115,6 +119,54 @@
             width: 100%;
             padding: 4px;
             font-size: 14px;
+        }
+    }
+}
+
+.profile-selector {
+    width: 100%;
+
+    .profile-icon {
+        width: 100%;
+        padding: 8px 15px 8px 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        display: grid;
+        grid-template-columns: auto 80px;
+
+        &:hover, &.active {
+            background: rgba(255,255,255,0.05);
+
+            .title {                
+                color: $white;
+            }
+
+            .date {
+                color: $lightgrey;
+            }
+        }
+
+        &.active {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .title {
+            min-height: 20px;
+            display: block;
+            font-size: 2em;
+            font-family: monospace;
+            color: $lightgrey;
+            cursor: pointer;
+        }
+
+        .date {
+            color: $midgrey;
+            font-family: monospace;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin-top: 9px;
         }
     }
 }
