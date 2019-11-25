@@ -30,7 +30,7 @@ export class SaveButton extends React.Component {
                 className={this.props.className}
                 onClick={this.save}
             >
-                {(this.state.state === "loading" ? "..." : "Save")}
+                {(this.state.state === "loading" ? "..." : "Save to Profile")}
             </button>
         );
     }

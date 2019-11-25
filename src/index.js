@@ -15,15 +15,8 @@ export class App extends React.Component {
 		super(props);
 		
 		this.state = {
-			html: `<!-- CREDIT; DO NOT REMOVE! -->
-			<p className="text-muted mx-auto text-right">original design by <a href="https://toyhou.se/realtense" style="color:#ad7c52">realtense</a><br>code by <a className="text" href="https://toyhou.se/Zodia" style="color:#ad7c52">zodia</a></p>`,
-			css: `.text-muted { color: white; }
-			.text {color: red;}
-			.mx-auto {
-				max-width: 550px; 
-				font-size: 10px; 
-				letter-spacing: 1px;
-			}`,
+			html: ``,
+			css: ``,
 
 			editorWidth: 40,
 
@@ -119,7 +112,7 @@ export class App extends React.Component {
 			.then(response => {
 				// load data
 				var data = response[0];
-				console.log(response);
+				
 				this.setState({
 					html: data.html,
 					css: data.css,

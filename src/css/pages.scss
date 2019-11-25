@@ -5,7 +5,7 @@
     height: 100%;
     max-height: 100%;
     overflow: auto;
-    padding: 20px;
+    padding: 20px 20px 70px 20px;
 
     &.editor {
         width: 40%;
@@ -21,7 +21,7 @@
 
 .panel.editor .the-navbar {
     width: 90%;
-    margin: 10px 5% 0 5%;
+    margin: 1px 5% 0 5%;
     display: flex;
     position: absolute; top: 0; left: 0;
     
@@ -32,9 +32,8 @@
         text-decoration: none;
         padding: 10px;
         font-size: 15px;
-        margin: 0 4px 0 4px;
+        margin: 0 1px 0 1px;
         background: $white;
-        border-radius: 50px;
         transition: 0.3s flex, 0.2s background, 0.1s color;
 
         &.active {
@@ -97,7 +96,7 @@
     }
 
     #preview-div {
-        min-height: 30px;
+        min-height: 0px;
     }
 }
 
