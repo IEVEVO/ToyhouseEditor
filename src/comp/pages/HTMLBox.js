@@ -7,7 +7,7 @@ export class HTMLBox extends React.Component {
         super(props);
 
         this.state = {
-            code: this.props.app.state.html,
+            code: this.props.app.state[this.props.language],
             getCode: () => {},
             unsaved: false
         };
@@ -30,23 +30,9 @@ export class HTMLBox extends React.Component {
     }
     
     submit(e) {
-        var key = e.keyCode;
-
-        if(key === 9) {
-            // tab
-            e.preventDefault();
-            return;
-        }
-
-        if(e === "autosave" || e.target.name === "submit" || (e.target.name === "code" && e.altKey && key === 83)) {
-            // alt + s
-            this.props.app.updateHTML( this.state.getCode() );
-            this.setState({unsaved: false});
-
-            if(typeof e === "event") {
-                e.preventDefault();
-            }
-        }
+        this.props.app.updateHTML( this.state.getCode() );
+        this.setState({unsaved: false});
+        e.preventDefault();
     }
 
     revert() {
@@ -54,7 +40,7 @@ export class HTMLBox extends React.Component {
         if(this.state.unsaved) {
             if( window.confirm("Revert changes?") ) {
                 this.setState({
-                    code: this.props.app.state.html,
+                    code: this.props.app.state[this.props.language],
                     unsaved: false
                 });
                 
@@ -66,12 +52,12 @@ export class HTMLBox extends React.Component {
 
     render() {
         return (
-            <div className="html-box">
+            <div className={this.props.language + "-box"}>
                 <Editor 
                     theme="dark"
                     name="code"
-                    placeholder="Enter your HTML code here"
-                    language="html"
+                    placeholder={"Enter your " + this.props.language.toUpperCase() + " code here"}
+                    language={this.props.language}
                     options={{
                         wordWrap: "on",
                         fontSize: 14,
@@ -80,9 +66,10 @@ export class HTMLBox extends React.Component {
                     value={this.state.code}
                     editorDidMount={this.update}
                 />
-
                 
-                <button className="submit success" name="submit" onClick={this.submit}>Save</button>
+                <button className="submit success" name="submit" onClick={this.submit}>Update Preview</button>
+
+                <button className="submit primary" name="save" onClick={this.save}>Save</button>
 
                 {
                     this.state.unsaved ? 
@@ -94,4 +81,5 @@ export class HTMLBox extends React.Component {
 }
 
 HTMLBox.defaultProps = {
+    language: "html"
 };

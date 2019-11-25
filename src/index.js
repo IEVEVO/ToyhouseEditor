@@ -24,7 +24,8 @@ export class App extends React.Component {
 			}`,
 
 			theme: "night",
-			removeComments: false
+			removeComments: false,
+			pageLayout: "user"
 		};
 
 		this.update = this.update.bind(this);

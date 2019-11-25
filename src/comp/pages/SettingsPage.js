@@ -25,17 +25,30 @@ export class SettingsPage extends React.Component {
 
                 <div className="setting-container">
                     <div className="label">
+                        Page template
+                    </div>
+
+                    <div className="action">
+                        <select name="pageLayout" value={this.props.app.state.pageLayout} onChange={this.props.app.update}>
+                            <option value="user">User profile</option>
+                            <option value="character">Character profile</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div className="setting-container">
+                    <div className="label">
                         Theme
                     </div>
 
                     <div className="action">
                         <select name="theme" value={this.props.app.state.theme} onChange={this.props.app.update}>
-                            <option value="default">Default</option>
+                            <option value="default" disabled>Default</option>
                             <option value="night">Night</option>
-                            <option value="black-forest">Pink</option>
-                            <option value="abyssal-plain">Teal</option>
-                            <option value="apis-mellifera">Bee</option>
-                            <option value="pink-velvet-cake">Pink again</option>
+                            <option value="black-forest" disabled>Pink</option>
+                            <option value="abyssal-plain" disabled>Teal</option>
+                            <option value="apis-mellifera" disabled>Bee</option>
+                            <option value="pink-velvet-cake" disabled>Pink again</option>
                         </select>
                     </div>
                 </div>
@@ -56,13 +69,15 @@ export class SettingsPage extends React.Component {
                     </div>
                 </div>
 
-                <div className="divider"></div>
+                <div className="divider" />
 
-                <div>
-                    <ExportButton 
-                        html={this.props.app.state.html} 
-                        css={this.props.app.state.css} 
-                    />
+
+                <div className="saves user-profiles">
+                    Saved user profiles
+                </div>
+                
+                <div className="saves user-profiles">
+                    Saved character profiles
                 </div>
 
             </div>
