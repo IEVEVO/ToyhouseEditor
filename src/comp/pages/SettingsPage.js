@@ -1,13 +1,8 @@
 import React from "react";
-import { ExportButton } from "../ExportButton";
 
 export class SettingsPage extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-
-        };
 
 		this.update = this.update.bind(this);
     }

@@ -10,11 +10,11 @@ export class CharacterProfileInner extends React.Component {
 
                         <div className="col-lg-6 col-12 profile-section profile-name-section">
                             <div className="img-thumbnail">
-                                <img src="/img/icon.jpg" className="profile-name-icon" />
+                                <img alt="Icon" src="/img/icon.jpg" className="profile-name-icon" />
                             </div>
                             <div className="profile-name-info">
                                 <h1 className="display-4">Character name</h1>
-                                <h2><span className="display-user"><a href="https://toyhou.se" target="_blank"><i className="fi-torso user-name-icon"></i>Creator</a></span></h2>
+                                <h2><span className="display-user"><a href="https://toyhou.se" rel="noopener noreferrer" target="_blank"><i className="fi-torso user-name-icon"></i>Creator</a></span></h2>
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@ export class CharacterProfileInner extends React.Component {
             Creator
             </dt>
                                                     <dd className="field-value col-sm-8">
-                                                        <span className="display-user"><a href="https://toyhou.se" target="_blank"><i className="fi-torso user-name-icon"></i>Creator's name</a></span>
+                                                        <span className="display-user"><a href="https://toyhou.se" rel="noopener noreferrer" target="_blank"><i className="fi-torso user-name-icon"></i>Creator's name</a></span>
                                                     </dd>
                                                 </div>
                                                 <div className="row fields-field">
@@ -55,7 +55,7 @@ export class CharacterProfileInner extends React.Component {
                                             </dl>
                                         </div>
                                         <div className="col-lg-4 col-md-6 col-12 profile-tags-content">
-                                            <a href="https://toyhou.se" target="_blank" className="badge badge-primary badge-pill">tag</a>
+                                            <a href="https://toyhou.se" rel="noopener noreferrer" target="_blank" className="badge badge-primary badge-pill">tag</a>
                                         </div>
                                     </div>
                                 </div>
