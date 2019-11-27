@@ -10,7 +10,7 @@ export class CharacterProfileInner extends React.Component {
 
                         <div className="col-lg-6 col-12 profile-section profile-name-section">
                             <div className="img-thumbnail">
-                                <img alt="Icon" src="/img/icon.jpg" className="profile-name-icon" />
+                                <img alt="Icon" src="https://i.imgur.com/sx4WgZh.jpg" className="profile-name-icon" />
                             </div>
                             <div className="profile-name-info">
                                 <h1 className="display-4">Character name</h1>

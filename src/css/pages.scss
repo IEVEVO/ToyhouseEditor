@@ -57,14 +57,15 @@
 .panel.editor {
     min-height: 100%;
     padding-top: 80px;
+    padding-bottom: 0;
     background: $darkgrey;
     border-right: 2px solid $white;
     z-index: 998;
     transition: 0.4s width;
 
     .html-box, .css-box {
-        min-height: calc(100% - 50px);
-        height: calc(100% - 50px);
+        min-height: calc(100% - 70px);
+        height: calc(100% - 70px);
     }
 
     button.submit {

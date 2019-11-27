@@ -93,7 +93,7 @@ export class HTMLBox extends React.Component {
                     Update Preview
                 </button>
 
-                <SaveButton app={this.props.app} className="submit" />
+                <SaveButton app={this.props.app} activeProfile={this.props.app.state.activeProfile} className="submit" />
 
                 {
                     this.state.unsaved ? 

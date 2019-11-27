@@ -13,7 +13,7 @@ export class ToyhouseSidebar extends React.Component {
                     <li>
                         <span className="display-user">
                             <a href="https://toyhou.se" rel="noopener noreferrer" target="_blank">
-                                <img alt="Icon" src="/img/icon.jpg" className="display-user-avatar" />
+                                <img alt="Icon" src="https://i.imgur.com/sx4WgZh.jpg" className="display-user-avatar" />
                                 <span className="display-user-username">User</span>
                             </a>
                         </span>

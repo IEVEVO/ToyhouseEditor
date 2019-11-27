@@ -38,6 +38,22 @@ export class App extends React.Component {
 		this.deleteSave = this.deleteSave.bind(this);
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		// if the active profile changes, save it to cookies
+		if(prevState.activeProfile !== this.state.activeProfile) {
+			window.localStorage.setItem("thpe-active", this.state.activeProfile);
+		}
+	}
+
+	componentDidMount() {
+		// on load, get the last saved profile
+		var profile = window.localStorage.getItem("thpe-active");
+
+		if(profile !== undefined && profile !== null && profile !== -1) {
+			this.loadSave(profile);
+		}
+	}
+
 	update(e) {
 		var tmp = {};
 		tmp[e.target.name] = e.target.value;
@@ -125,7 +141,7 @@ export class App extends React.Component {
 
 	}
 
-	deleteSave(index) {
+	deleteSave(index, callback, error) {
 		// delete
 		deleteTheme(index)
 			.then(response => {
@@ -134,8 +150,9 @@ export class App extends React.Component {
 					activeProfile: -1
 				});
 
+				callback();
 			})
-            .catch(err => { console.error(err); });
+            .catch(err => { console.error(err); error(); });
 
 	}
 
