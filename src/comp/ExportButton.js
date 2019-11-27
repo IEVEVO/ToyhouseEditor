@@ -23,7 +23,6 @@ export class ExportButton extends React.Component {
         // exports
         var code = applyClassesToHTML(this.props.html, this.props.css, false);
 
-        console.log(code);
         this.setState({code: code});
     }
 

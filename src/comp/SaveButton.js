@@ -1,14 +1,45 @@
 import React from "react";
+import { fetchProfileById } from "../db/themes";
 
 export class SaveButton extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            state: "idle"
+            state: "idle",
+            profileName: ""
         };
 
+		this.loadProfile = this.loadProfile.bind(this);
 		this.save = this.save.bind(this);
+    }
+
+    componentDidMount() {
+        // get the name of the active profile
+        this.loadProfile();
+    }
+
+    componentDidUpdate(prevProps) {
+        // update the name if the active profile changes
+        if(prevProps.activeProfile !== this.props.activeProfile) {
+            this.loadProfile();
+        }
+    }
+
+    loadProfile() {
+        // get the name of the active profile
+        if(this.props.activeProfile === -1) {
+            return;
+        }
+
+        fetchProfileById(this.props.activeProfile)
+            .then(profile => {
+                this.setState({
+                    profileName: profile[0].name
+                });
+            })
+            .catch(err => { console.error(err); });
+
     }
 
     save() {
@@ -16,7 +47,10 @@ export class SaveButton extends React.Component {
         this.setState({state: "loading"});
 
         this.props.app.overwriteSave(() => {
-            this.setState({state: "idle"});
+            window.setTimeout(() => {
+                this.setState({state: "idle"});
+            }, 500);
+
         },
         () => {
             this.setState({state: "idle"});
@@ -27,10 +61,10 @@ export class SaveButton extends React.Component {
     render() {
         return (
             <button 
-                className={this.props.className}
+                className={this.props.className + " " + (this.state.state === "loading" ? "disabled" : "")}
                 onClick={this.save}
             >
-                {(this.state.state === "loading" ? "..." : "Save to Profile")}
+                Save {(this.state.profileName === "" ? "to Profile" : this.state.profileName)}
             </button>
         );
     }
@@ -38,5 +72,6 @@ export class SaveButton extends React.Component {
 
 
 SaveButton.defaultProps = {
-    className: ""
+    className: "",
+    activeProfile: -1
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { fetchAll } from "../../db/themes";
 import { ProfileIcon } from "./ProfileIcon";
+import { SaveButton } from "../SaveButton";
 
 export class ProfileSelector extends React.Component {
     constructor(props) {
@@ -77,8 +78,10 @@ export class ProfileSelector extends React.Component {
 
                     {
                         this.state.state === "loading" ? "" :
-                        <button className="submit success" onClick={this.newProfile}>Save New Profile</button>
+                        <button className="submit success" onClick={this.newProfile}>New Profile</button>
                     }
+
+                    <SaveButton app={this.props.app} activeProfile={this.props.app.state.activeProfile} className="submit" />
                 </div>
             </div>
         );

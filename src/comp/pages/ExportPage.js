@@ -1,27 +1,50 @@
 import React from "react";
 import { ExportButton } from "../ExportButton";
+import { fetchProfileById } from "../../db/themes";
 
 export class ExportPage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-
+            state: "loading",
+            name: "..."
         };
 
-		this.update = this.update.bind(this);
+		//this.update = this.update.bind(this);
     }
 
-	update(e) {
-		var tmp = {unsaved: true};
-		tmp[e.target.name] = e.target.value;
-		this.setState(tmp);
+    componentDidMount() {
+        if(this.props.app.state.activeProfile === -1) {
+            // no profile
+            this.setState({name: "", state: "idle"});
+        }
+
+        
+        fetchProfileById(this.props.app.state.activeProfile)
+            .then(profile => {
+                this.setState({
+                    name: profile[0].name,
+                    state: "idle"
+                });
+            })
+            .catch(err => { 
+                console.error(err); 
+                this.setState({name: "", state: "idle"});
+            });
     }
 
 
     render() {
+
+        if(this.state.state === "loading") {
+            return "Loading...";
+        }
+
+
         return (
             <div className="export-page">
+                <h1>Exporting {this.state.name}</h1>
 
                 <div>
                     <ExportButton 
