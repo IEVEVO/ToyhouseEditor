@@ -69,6 +69,7 @@ export class HTMLBox extends React.Component {
 
 
     render() {
+        
         return (
             <div className={this.props.language + "-box"}>
                 <Editor 

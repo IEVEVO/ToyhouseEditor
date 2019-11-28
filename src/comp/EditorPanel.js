@@ -21,6 +21,13 @@ export class EditorPanel extends React.Component {
 
 
     render() {
+
+        // if first time loading
+        if(this.props.app.state.state === "loading") {
+            return "Loading ...";
+        }
+
+
         return (
             <div 
                 className={"panel editor " + (this.state.open ? "open" : "")}
