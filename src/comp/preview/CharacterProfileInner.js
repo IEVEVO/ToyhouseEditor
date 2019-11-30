@@ -49,7 +49,7 @@ export class CharacterProfileInner extends React.Component {
             Favorites
             </dt>
                                                     <dd className="field-value col-sm-8">
-                                                        <a href="/4745769.vyrnwy/favorites" th-modal-trigger>2</a>
+                                                        <a href="/">2</a>
                                                     </dd>
                                                 </div>
                                             </dl>

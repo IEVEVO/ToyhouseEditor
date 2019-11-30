@@ -36,7 +36,7 @@ export class PreviewPanel extends React.Component {
 
     loadTheme() {
         // loads the current theme
-        var oldLink = document.getElementsByTagName("link")[5];
+        var oldLink = document.getElementsByTagName("link")[6];
 
         var newLink = document.createElement("link");
         newLink.rel = "stylesheet";
@@ -84,7 +84,7 @@ export class PreviewPanel extends React.Component {
                     left: this.props.app.state.editorWidth + "%"
                 }}
             >
-                <ToyhouseProfile>
+                <ToyhouseProfile activeProfile={this.props.app.state.activeProfile}>
                     {page}
                 </ToyhouseProfile>
             </div>

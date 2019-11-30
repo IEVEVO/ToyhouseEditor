@@ -20,7 +20,7 @@ export class ToyhouseProfile extends React.Component {
 
                 <div id="main" className="clearfix container-fluid main-container full-sidebar">
                     <div className="row row-offcanvas row-offcanvas-left" data-sticky-wrap="">
-                        <ToyhouseSidebar />
+                        <ToyhouseSidebar activeProfile={this.props.activeProfile} />
 
                         {this.props.children}
                     </div>
