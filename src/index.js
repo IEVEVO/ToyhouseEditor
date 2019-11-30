@@ -15,6 +15,8 @@ export class App extends React.Component {
 		super(props);
 		
 		this.state = {
+			state: "loading",
+
 			html: ``,
 			css: ``,
 
@@ -28,6 +30,7 @@ export class App extends React.Component {
 		};
 
 		this.update = this.update.bind(this);
+		this.updateTheme = this.updateTheme.bind(this);
 		this.updateHTML = this.updateHTML.bind(this);
 		this.updateCSS = this.updateCSS.bind(this);
 		this.updateSize = this.updateSize.bind(this);
@@ -50,7 +53,13 @@ export class App extends React.Component {
 		var profile = window.localStorage.getItem("thpe-active");
 
 		if(profile !== undefined && profile !== null && profile !== -1) {
-			this.loadSave(profile);
+			this.loadSave(profile, () => {
+				// stop loading
+				this.setState({state: "idle"});
+			});
+		}
+		else {
+			this.setState({state: "idle"});
 		}
 	}
 
@@ -58,6 +67,10 @@ export class App extends React.Component {
 		var tmp = {};
 		tmp[e.target.name] = e.target.value;
 		this.setState(tmp);
+	}
+
+	updateTheme(e) {
+		this.setState({theme: e.target.value});
 	}
 
 	updateHTML(code) {
@@ -73,7 +86,7 @@ export class App extends React.Component {
 	}
 
 
-	newSave(callback, error) {
+	newSave(callback=() => {}, error=() => {}) {
         var name = window.prompt("Enter a name");
 
         if(!name || name === null || name.trim() === "") {
@@ -99,7 +112,7 @@ export class App extends React.Component {
 
 	}
 	
-	overwriteSave(callback, error) {
+	overwriteSave(callback=() => {}, error=() => {}) {
 		if(this.state.activeProfile === -1) {
 			this.newSave(callback, error);
 			return;
@@ -122,7 +135,7 @@ export class App extends React.Component {
 	
 	}
 
-	loadSave(index) {
+	loadSave(index, callback=() => {}, error=() => {}) {
 		// load
 		fetchProfileById(index)
 			.then(response => {
@@ -136,12 +149,16 @@ export class App extends React.Component {
 					activeProfile: data.id
 				});
 
+				callback(data);
 			})
-            .catch(err => { console.error(err); });
+            .catch(err => { 
+				console.error(err); 
+				error(err);
+			});
 
 	}
 
-	deleteSave(index, callback, error) {
+	deleteSave(index, callback=() => {}, error=() => {}) {
 		// delete
 		deleteTheme(index)
 			.then(response => {
@@ -156,7 +173,7 @@ export class App extends React.Component {
 
 	}
 
-	renameSave(index, newName, callback, error) {
+	renameSave(index, newName, callback=() => {}, error=() => {}) {
 		editTheme(index, {
 			name: newName
         })

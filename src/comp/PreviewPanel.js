@@ -5,15 +5,45 @@ import { CharacterProfileInner } from "./preview/CharacterProfileInner";
 import { UserProfileInner } from "./preview/UserProfileInner";
 
 export class PreviewPanel extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            state: "loading",
+            currentTheme: this.props.app.state.theme
+        };
+
+		this.loadTheme = this.loadTheme.bind(this);
+    }
 
     componentDidMount() {
         // render whatever's in the fields on mount
-        this.componentDidUpdate();
+        this.loadTheme();
     }
 
     componentDidUpdate(prevProps) {
         // update html in frame
         document.getElementById("preview-div").innerHTML = applyClassesToHTML(this.props.app.state.html, this.props.app.state.css, this.props.app.state.removeComments);
+
+
+        // update theme if that changed at all
+        if(this.state.currentTheme !== this.props.app.state.theme) {
+            this.loadTheme();
+
+            this.setState({currentTheme: this.props.app.state.theme});
+        }
+    }
+
+    loadTheme() {
+        // loads the current theme
+        var oldLink = document.getElementsByTagName("link")[6];
+
+        var newLink = document.createElement("link");
+        newLink.rel = "stylesheet";
+        newLink.type = "text/css";
+        newLink.href = "/themes/" + this.props.app.state.theme + ".css";
+
+        document.getElementsByTagName("head")[0].replaceChild(newLink, oldLink);
     }
 
 
@@ -54,7 +84,7 @@ export class PreviewPanel extends React.Component {
                     left: this.props.app.state.editorWidth + "%"
                 }}
             >
-                <ToyhouseProfile>
+                <ToyhouseProfile activeProfile={this.props.app.state.activeProfile}>
                     {page}
                 </ToyhouseProfile>
             </div>

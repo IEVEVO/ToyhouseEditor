@@ -3,6 +3,8 @@ import {Route, NavLink} from "react-router-dom";
 import { HTMLBox } from "./pages/HTMLBox";
 import { SettingsPage } from "./pages/SettingsPage";
 import { ExportPage } from "./pages/ExportPage";
+import { AboutPage } from "./pages/AboutPage";
+import { ProfileSelector } from "./settings/ProfileSelector";
 
 export class EditorPanel extends React.Component {
     constructor(props) {
@@ -21,6 +23,13 @@ export class EditorPanel extends React.Component {
 
 
     render() {
+
+        // if first time loading
+        if(this.props.app.state.state === "loading") {
+            return "Loading ...";
+        }
+
+
         return (
             <div 
                 className={"panel editor " + (this.state.open ? "open" : "")}
@@ -29,7 +38,7 @@ export class EditorPanel extends React.Component {
                 }}
             >
                 <div className="the-navbar">
-                    <NavLink className="small" to="/" exact>HTML</NavLink>
+                    <NavLink className="small" to="/html">HTML</NavLink>
                     <NavLink className="small" to="/css">CSS</NavLink>
                     <NavLink to="/export">Export</NavLink>
                     <NavLink to="/settings">Settings</NavLink>
@@ -40,7 +49,9 @@ export class EditorPanel extends React.Component {
                 </div>
 
 
-                <Route path="/" exact render={(props) => {
+                <Route path="/" exact component={AboutPage} />
+
+                <Route path="/html" render={(props) => {
                     return <HTMLBox app={this.props.app} language="html" />
                 }} />
 
@@ -48,12 +59,16 @@ export class EditorPanel extends React.Component {
                     return <HTMLBox app={this.props.app} language="css" />
                 }} />
 
-                <Route path="/settings" render={(props) => {
+                <Route path="/export" render={(props) => {
+                    return <ExportPage app={this.props.app} />
+                }} />
+
+                <Route path="/settings" exact render={(props) => {
                     return <SettingsPage app={this.props.app} />
                 }} />
 
-                <Route path="/export" render={(props) => {
-                    return <ExportPage app={this.props.app} />
+                <Route path="/settings/profiles" render={(props) => {
+                    return <ProfileSelector app={this.props.app} />
                 }} />
             </div>
         );

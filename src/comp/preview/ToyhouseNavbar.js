@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 export class ToyhouseNavbar extends React.Component {
     shouldComponentUpdate() {
@@ -8,16 +9,9 @@ export class ToyhouseNavbar extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-toggleable-sm navbar-inverse header" data-topbar="" role="navigation" id="header">
-                <a 
-                    className="navbar-brand" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://toyhou.se" 
-                    style={{height: "40px", textAlign: "center", margin: "0 auto 0 auto"}}
-                >
-                    TOYHOU.SE REPLICA - NAVIGATION BAR
-                </a>
-                
+                <NavLink to="/" className="navbar-brand" style={{height: "40px", textAlign: "center", margin: "0 auto 0 auto"}}>
+                    TOYHOU.SE EDITOR - NAVIGATION BAR
+                </NavLink>
             </nav>
         );
     }

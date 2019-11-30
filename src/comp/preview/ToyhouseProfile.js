@@ -5,6 +5,14 @@ import { ToyhouseNavbar } from "./ToyhouseNavbar";
 
 
 export class ToyhouseProfile extends React.Component {
+    shouldComponentUpdate(nextProps) {
+        if(nextProps.children === this.props.children) {
+            return false;
+        }
+
+        return true;
+    }
+
     render() {
         return (
             <div id="container" className="page-container page-container-user">
@@ -12,7 +20,7 @@ export class ToyhouseProfile extends React.Component {
 
                 <div id="main" className="clearfix container-fluid main-container full-sidebar">
                     <div className="row row-offcanvas row-offcanvas-left" data-sticky-wrap="">
-                        <ToyhouseSidebar />
+                        <ToyhouseSidebar activeProfile={this.props.activeProfile} />
 
                         {this.props.children}
                     </div>

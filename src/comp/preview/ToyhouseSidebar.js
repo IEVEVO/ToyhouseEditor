@@ -1,8 +1,48 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
+import { fetchProfileById } from "../../db/themes";
 
 export class ToyhouseSidebar extends React.Component {
-    shouldComponentUpdate() {
-        return false;
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            profileName: "User"
+        };
+
+		this.loadProfile = this.loadProfile.bind(this);
+    }
+
+    componentDidMount() {
+        // get the name of the active profile
+        this.loadProfile();
+    }
+
+    componentDidUpdate(prevProps) {
+        // update the name if the active profile changes
+        if(prevProps.activeProfile !== this.props.activeProfile) {
+            this.loadProfile();
+        }
+    }
+
+    loadProfile() {
+        // get the name of the active profile
+        if(this.props.activeProfile === undefined || this.props.activeProfile === -1) {
+            this.setState({
+                profileName: "User"
+            });
+
+            return;
+        }
+
+        fetchProfileById(this.props.activeProfile)
+            .then(profile => {
+                this.setState({
+                    profileName: profile[0].name
+                });
+            })
+            .catch(err => { console.error(err); });
+
     }
 
     render() {
@@ -12,18 +52,34 @@ export class ToyhouseSidebar extends React.Component {
                     <li className="header">User</li>
                     <li>
                         <span className="display-user">
-                            <a href="https://toyhou.se" rel="noopener noreferrer" target="_blank">
+                            <NavLink to="/settings/profiles">
                                 <img alt="Icon" src="https://i.imgur.com/sx4WgZh.jpg" className="display-user-avatar" />
-                                <span className="display-user-username">User</span>
-                            </a>
+                                <span className="display-user-username">{this.state.profileName}</span>
+                            </NavLink>
                         </span>
                     </li>
                     
-                    <li className=" sidebar-li-bulletins">
-                        <a href="https://toyhou.se" rel="noopener noreferrer" target="_blank">Link</a>
+                    <li className="sidebar-li-bulletins">
+                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/html">HTML</NavLink>
+                        <NavLink to="/css">CSS</NavLink>
+                        <NavLink to="/export">Export</NavLink>
+                        <NavLink to="/settings">Settings</NavLink>
+                        <NavLink to="/settings/profiles">Profiles</NavLink>
+                    </li>
+                    
+                    <li className="header">Links</li>
+                    <li>
+                        <a href="https://toyhou.se" rel="noopener noreferrer" target="_blank">Toyhou.se</a>
+                        <a href="https://acroma.rf.gd" rel="noopener noreferrer" target="_blank">Dev</a>
                     </li>
                 </ul>
             </div>
         );
     }
 }
+
+
+ToyhouseSidebar.defaultProps = {
+    activeProfile: -1
+};

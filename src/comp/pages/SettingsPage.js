@@ -1,5 +1,5 @@
 import React from "react";
-import { ProfileSelector } from "../settings/ProfileSelector";
+import {NavLink} from "react-router-dom";
 
 export class SettingsPage extends React.Component {
     constructor(props) {
@@ -38,7 +38,7 @@ export class SettingsPage extends React.Component {
                     </div>
 
                     <div className="action">
-                        <select name="theme" value={this.props.app.state.theme} onChange={this.props.app.update}>
+                        <select name="theme" value={this.props.app.state.theme} onChange={this.props.app.updateTheme}>
                             <option value="default">Default</option>
                             <option value="night">Night</option>
                             <option value="black-forest">Pink</option>
@@ -65,13 +65,9 @@ export class SettingsPage extends React.Component {
                     </div>
                 </div>
 
-                <div className="divider" />
-
-
-                <ProfileSelector 
-                    app={this.props.app}
-                />
-
+                <NavLink to="/settings/profiles">
+                    <button className="submit primary">Manage Profiles</button>
+                </NavLink>
             </div>
         );
     }
