@@ -9,7 +9,8 @@ export class PreviewPanel extends React.Component {
         super(props);
 
         this.state = {
-            state: "loading"
+            state: "loading",
+            currentTheme: this.props.app.state.theme
         };
 
 		this.loadTheme = this.loadTheme.bind(this);
@@ -17,7 +18,6 @@ export class PreviewPanel extends React.Component {
 
     componentDidMount() {
         // render whatever's in the fields on mount
-        //this.componentDidUpdate();
         this.loadTheme();
     }
 
@@ -27,16 +27,16 @@ export class PreviewPanel extends React.Component {
 
 
         // update theme if that changed at all
-        this.loadTheme();
-        console.log(prevProps.app.state.theme === this.props.app.state.theme);
-        if(prevProps.app.state.theme === this.props.app.state.theme) {
+        if(this.state.currentTheme !== this.props.app.state.theme) {
             this.loadTheme();
+
+            this.setState({currentTheme: this.props.app.state.theme});
         }
     }
 
     loadTheme() {
         // loads the current theme
-        var oldLink = document.getElementsByTagName("link")[4];
+        var oldLink = document.getElementsByTagName("link")[5];
 
         var newLink = document.createElement("link");
         newLink.rel = "stylesheet";

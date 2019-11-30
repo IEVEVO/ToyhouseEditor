@@ -1,5 +1,5 @@
 import React from "react";
-import { ProfileSelector } from "../settings/ProfileSelector";
+import {NavLink} from "react-router-dom";
 
 export class SettingsPage extends React.Component {
     constructor(props) {
@@ -65,13 +65,9 @@ export class SettingsPage extends React.Component {
                     </div>
                 </div>
 
-                <div className="divider" />
-
-
-                <ProfileSelector 
-                    app={this.props.app}
-                />
-
+                <NavLink to="/settings/profiles">
+                    <button className="submit primary">Manage Profiles</button>
+                </NavLink>
             </div>
         );
     }
