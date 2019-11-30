@@ -47,7 +47,7 @@ export class ExportPage extends React.Component {
                 <h1>Exporting {this.state.name}</h1>
 
                 <p>
-                    Scroll down for a guide
+                    Scroll down for some rules
                 </p>
 
                 <div>
