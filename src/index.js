@@ -30,6 +30,7 @@ export class App extends React.Component {
 		};
 
 		this.update = this.update.bind(this);
+		this.updateTheme = this.updateTheme.bind(this);
 		this.updateHTML = this.updateHTML.bind(this);
 		this.updateCSS = this.updateCSS.bind(this);
 		this.updateSize = this.updateSize.bind(this);
@@ -66,6 +67,10 @@ export class App extends React.Component {
 		var tmp = {};
 		tmp[e.target.name] = e.target.value;
 		this.setState(tmp);
+	}
+
+	updateTheme(e) {
+		this.setState({theme: e.target.value});
 	}
 
 	updateHTML(code) {

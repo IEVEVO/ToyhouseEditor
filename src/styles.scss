@@ -14,32 +14,3 @@ $i: !important;
 //@import "css/themes/fa.css";
 @import "css/general";
 @import "css/pages";
-
-
-// THEMES
-/*.preview {
-    @import "css/themes/main.css";
-
-    &.default {
-        @import "css/themes/default";
-    }
-    &.night {
-        @import "css/themes/night";
-    }
-    &.abyssal-plain {
-        @import "css/themes/abyssal-plain";
-    }
-    &.black-forest {
-        @import "css/themes/black-forest";
-    }
-    &.apis-mellifera {
-        @import "css/themes/apis-mellifera";
-    }
-    &.pink-velvet-cake {
-        @import "css/themes/pink-velvet-cake";
-    }
-}*/
-
-.preview.night {
-    @import "css/themes/night";
-}
