@@ -20,35 +20,45 @@
 
 
 .panel.editor .the-navbar {
-    width: 90%;
-    margin: 1px 5% 0 5%;
+    width: 100%;
+    margin: 0px auto 0 auto;
     display: flex;
     position: absolute; top: 0; left: 0;
     
-    a {
+    a, button {
         flex: 1;
         color: $darkgrey;
         text-align: center;
         text-decoration: none;
-        padding: 10px;
+        padding: 7px 10px 7px 10px;
+        margin: 0;
         font-size: 15px;
-        margin: 0 1px 0 1px;
+        border-radius: 0;
         background: $white;
         transition: 0.3s flex, 0.2s background, 0.1s color;
+
+        &:hover {
+            opacity: 0.95;
+        }
 
         &.active {
             background: $blue;
             color: $white;
-            flex: 1.2 $i;
+            //flex: 1.2 $i;
         }
 
         &.small {
             flex: 0.5;
             font-size: 15px;
 
-            &.active {
+            /*&.active {
                 flex: 0.7 $i;
-            }
+            }*/
+        }
+
+        &.toggle {
+            background: $midgrey;
+            color: $white;
         }
     }
 }
@@ -56,12 +66,17 @@
 
 .panel.editor {
     min-height: 100%;
-    padding-top: 80px;
+    padding-top: 65px;
     padding-bottom: 0;
     background: $darkgrey;
     border-right: 2px solid $white;
     z-index: 998;
     transition: 0.4s width;
+
+    h1 {
+        margin-bottom: 15px;
+        font-size: 2em;
+    }
 
     .html-box, .css-box {
         min-height: calc(100% - 70px);
@@ -84,17 +99,6 @@
     min-height: 100%;
     padding: 0;
     position: absolute; top: 0; left: 40%;
-
-    #preview-iframe {
-        width: 100%;
-        background: rgba(255,255,255,0);
-        transition: 0.1s background, 0.1s border;
-
-        &:hover {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid $white;
-        }
-    }
 
     #preview-div {
         min-height: 0px;

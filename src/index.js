@@ -31,6 +31,7 @@ export class App extends React.Component {
 		};
 
 		this.setNextAutosave = this.setNextAutosave.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
 
 		this.update = this.update.bind(this);
 		this.updateTheme = this.updateTheme.bind(this);
@@ -38,11 +39,17 @@ export class App extends React.Component {
 		this.updateCSS = this.updateCSS.bind(this);
 		this.updateSize = this.updateSize.bind(this);
 
+		this.newBlankSave = this.newBlankSave.bind(this);
 		this.newSave = this.newSave.bind(this);
 		this.overwriteSave = this.overwriteSave.bind(this);
 		this.loadSave = this.loadSave.bind(this);
 		this.deleteSave = this.deleteSave.bind(this);
 	}
+
+    componentWillUnmount() {
+        // unbind keybinds
+        window.removeEventListener("keydown", this.handleKeyDown);
+    }
 
 	componentDidUpdate(prevProps, prevState) {
 		// if the active profile changes, save it to cookies
@@ -65,7 +72,10 @@ export class App extends React.Component {
 			this.setState({state: "idle"});
 		}
 
+		// initialise shortcuts
+        window.addEventListener("keydown", this.handleKeyDown);
 
+		// initialise autosaving
 		this.setNextAutosave();
 	}
 
@@ -92,6 +102,19 @@ export class App extends React.Component {
 		}, this.state.autosave);
 	}
 
+	handleKeyDown(e) {
+        // keyboard shortcuts
+        if(this.state.state === "loading") return;
+
+		var key = e.keyCode;
+
+		if(key === 78 && e.ctrlKey && e.altKey && e.shiftKey) {
+            // ctrl + alt + shift + n --> new blank profile
+            this.newBlankSave();
+            e.preventDefault();
+		}
+	}
+
 
 	update(e) {
 		var tmp = {};
@@ -115,6 +138,39 @@ export class App extends React.Component {
 		this.setState({editorWidth: size});
 	}
 
+
+	newBlankSave(callback=() => {}, error=() => {}) {
+		// make a new blank save
+		if( !window.confirm("Do you want to create a new profile? This will erase any unsaved changes.") ) {
+			return;
+		}
+		
+
+        var name = window.prompt("Enter a name");
+
+        if(!name || name === null || name.trim() === "") {
+			error();
+            return;
+		}
+
+		addTheme({
+            date: new Date(),
+            name: name || "Theme"
+        })
+            .then(id => {
+				callback(id);
+				this.setState({
+					activeProfile: id,
+					html: "",
+					css: ""
+				});
+            })
+            .catch(err => {
+				error();
+                console.error(err);
+            });
+
+	}
 
 	newSave(callback=() => {}, error=() => {}) {
         var name = window.prompt("Enter a name");
@@ -144,7 +200,7 @@ export class App extends React.Component {
 	
 	overwriteSave(callback=() => {}, error=() => {}) {
 		if(this.state.activeProfile === -1) {
-			this.newSave(callback, error);
+			//this.newSave(callback, error);
 			return;
 		}
 
@@ -171,6 +227,17 @@ export class App extends React.Component {
 			.then(response => {
 				// load data
 				var data = response[0];
+
+				if(data === undefined) {
+					// invalid save
+					this.setState({
+						activeProfile: -1,
+						state: "idle"
+					});
+
+					error();
+					return;
+				}
 				
 				this.setState({
 					html: data.html,

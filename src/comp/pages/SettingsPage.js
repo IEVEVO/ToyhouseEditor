@@ -18,6 +18,7 @@ export class SettingsPage extends React.Component {
     render() {
         return (
             <div className="settings-page">
+                <h1>Settings</h1>
 
                 <div className="setting-container">
                     <div className="label">
