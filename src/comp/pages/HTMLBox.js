@@ -9,33 +9,64 @@ export class HTMLBox extends React.Component {
         super(props);
 
         this.state = {
+            state: "loading",
             code: this.props.app.state[this.props.language],
             getCode: () => {},
-            unsaved: false,
 
             updateDisabled: false
         };
 
+        this.timer = "";
+
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        
 		this.update = this.update.bind(this);
 		this.submit = this.submit.bind(this);
 		this.revert = this.revert.bind(this);
     }
 
     componentWillUnmount() {
-        // save if unsaved
+        // save when being unloaded
         if(this.state.unsaved) {
             this.submit("autosave");
         }
+
+        // unbind keybinds
+        window.removeEventListener("keydown", this.handleKeyDown);
     }
 
+    componentDidMount() {
+		// set up keybinds
+		window.addEventListener("keydown", this.handleKeyDown);
+    }
+
+	handleKeyDown(e) {
+        // keyboard shortcuts
+        if(this.state.state === "loading") return;
+
+		var key = e.keyCode;
+
+		if(key === 83 && e.ctrlKey) {
+            // ctrl + s --> update preview
+            if(e.shiftKey) {
+                // ctrl + shift + s --> save to profile
+                this.props.app.overwriteSave();
+            }
+
+            this.submit();
+            e.preventDefault();
+		}
+	}
+
+
 	update(code) {
-        //console.log(code());
-		this.setState({getCode: code});
+        // when the editor mounts, store the function that is used to get the current value of the editor
+		this.setState({getCode: code, state: "idle"});
     }
     
     submit(e) {
         this.setState({unsaved: false, updateDisabled: true});
-        e.preventDefault();
+        if(e !== undefined) e.preventDefault();
 
         switch(this.props.language) {
             case "html":
@@ -50,6 +81,7 @@ export class HTMLBox extends React.Component {
 
 
         window.setTimeout(() => {
+            // delay the button returning to normal
             this.setState({updateDisabled: false});
         }, 300);
     }
