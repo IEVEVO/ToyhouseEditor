@@ -41,7 +41,7 @@ export class PreviewPanel extends React.Component {
         var newLink = document.createElement("link");
         newLink.rel = "stylesheet";
         newLink.type = "text/css";
-        newLink.href = "/themes/" + this.props.app.state.theme + ".css";
+        newLink.href = "./themes/" + this.props.app.state.theme + ".css";
 
         document.getElementsByTagName("head")[0].replaceChild(newLink, oldLink);
     }
