@@ -32,7 +32,7 @@ export function applyClassesToHTML(html, css, removeComments=false) {
 
     // first, get a list of all the CSS classes
     var cssClasses = {},
-        cssRegex = /\.([a-z0-9_-]+) {([a-z0-9:;\-\n\t ]+)}/gi;
+        cssRegex = /\.([a-z0-9_-]+)\s+{([a-z0-9:;\-\s%|\\/ ]+)}/gi;
 
     var tmp;
 
@@ -41,11 +41,12 @@ export function applyClassesToHTML(html, css, removeComments=false) {
             cssClasses[ tmp[1] ] = tmp[2].replace(/[\t\n{}]+/gm, "").trim();
         }
     }
+    console.log(cssClasses);
 
 
     // second, get a list of all the HTML tags with a class attribute
     var newHTML = html,
-        codeRegex = /<[a-z]\s*(className=['"][a-z\-_0-9 ]+["'])[/a-z0-9:;\-_"' ]*[^>]*>/gi,
+        codeRegex = /<[a-z ]+\s+(className=['"][a-z\-_0-9 ]+["'])[/a-z0-9:;\-_"' ]*>/gi,
         htmlTags = [];
 
     tmp = null;
@@ -90,7 +91,6 @@ export function applyClassesToHTML(html, css, removeComments=false) {
 
         newHTML = newHTML.replace(replaceRegex, 'style="' + styleString + '" ');
     }
-
 
     return newHTML;
 }
