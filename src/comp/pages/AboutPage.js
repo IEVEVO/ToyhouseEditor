@@ -12,13 +12,17 @@ export class AboutPage extends React.Component {
 
                     This tool allows you to use CSS classes in your HTML, which will be converted to inline <code>style</code> attributes so you can use it on Toyhouse.<br /><br />
 
-                    Be sure to follow the special rules <NavLink to="/export">here</NavLink>, though, as there are some fiddly bits.
+                    Be sure to follow the special rules <NavLink to="/export">here</NavLink>, though, as there are some fiddly bits.<br />
                 </p>
 
 
                 <NavLink to="/settings/profiles">
                     <button className="primary">Manage Profiles</button>
                 </NavLink>
+
+                <a href="https://github.com/IEVEVO/ToyhouseEditor" target="_blank" rel="noopener noreferrer">
+                    <button>View on Github</button>
+                </a>
             </div>
         );
     }
