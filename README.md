@@ -29,7 +29,7 @@ If something goes wrong, leave a description of it [here](https://github.com/IEV
 
 ---
 # Download
-You can download a version of this for offline use. The only thing that doesn't work is changing themes, to my knowledge. You might experience issues with profiles too, however, so I wouldn't save anything too important in there.
+You can download a version of this for offline use. You might experience issues with profiles, however, so I wouldn't save anything too important in there.
 
 All you need to do is download the latest version (.ZIP) from [here](https://github.com/IEVEVO/ToyhouseEditor/releases) and run the `index.html` file. I'd recommend extracting it into a folder first, but you don't have to.
 
