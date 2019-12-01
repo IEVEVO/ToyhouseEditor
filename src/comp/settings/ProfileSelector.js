@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import { fetchAll } from "../../db/themes";
 import { ProfileIcon } from "./ProfileIcon";
 import { SaveButton } from "../SaveButton";
@@ -77,12 +78,17 @@ export class ProfileSelector extends React.Component {
                         (this.state.profiles.length === 0 ? "No profiles" : "")
                     }
 
-                    {
-                        this.state.state === "loading" ? "" :
-                        <button className="submit success" onClick={this.newProfile}>New Profile</button>
-                    }
+                    <NavLink to="/settings">
+                        <button className="submit-left">Settings</button>
+                    </NavLink>
+                    
 
-                    <SaveButton app={this.props.app} activeProfile={this.props.app.state.activeProfile} className="submit" />
+                    <button className="submit success" onClick={this.newProfile}>New Profile</button>
+
+                    {
+                        this.props.app.state.activeProfile === -1 ? "" :
+                        <SaveButton app={this.props.app} activeProfile={this.props.app.state.activeProfile} className="submit" />
+                    }
                 </div>
             </div>
         );
