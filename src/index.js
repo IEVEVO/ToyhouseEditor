@@ -21,6 +21,7 @@ export class App extends React.Component {
 			css: ``,
 
 			editorWidth: 40,
+			autosave: 300000,
 
 			theme: "night",
 			removeComments: false,
@@ -28,6 +29,8 @@ export class App extends React.Component {
 
 			activeProfile: -1
 		};
+
+		this.setNextAutosave = this.setNextAutosave.bind(this);
 
 		this.update = this.update.bind(this);
 		this.updateTheme = this.updateTheme.bind(this);
@@ -61,7 +64,34 @@ export class App extends React.Component {
 		else {
 			this.setState({state: "idle"});
 		}
+
+
+		this.setNextAutosave();
 	}
+
+
+	setNextAutosave() {
+		// sets a timer for the next autosave
+		if(this.state.autosave === 0) {
+			// if 0, disabled
+
+			window.setTimeout(() => {
+				// if off, check every minute to see if it's changed
+				this.setNextAutosave();
+			}, 60000);
+
+			return;
+		}
+
+
+		window.setTimeout(() => {
+			// after the interval
+			this.overwriteSave();
+			this.setNextAutosave();
+
+		}, this.state.autosave);
+	}
+
 
 	update(e) {
 		var tmp = {};
@@ -126,10 +156,10 @@ export class App extends React.Component {
             layout: this.state.pageLayout
         })
             .then(response => {
-				callback();
+				callback(response);
             })
             .catch(err => {
-				error();
+				error(err);
                 console.error(err);
             });
 	

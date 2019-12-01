@@ -49,6 +49,22 @@ export class SettingsPage extends React.Component {
                     </div>
                 </div>
 
+                <div className="setting-container">
+                    <div className="label">
+                        Autosave
+                    </div>
+
+                    <div className="action">
+                        <select name="autosave" value={this.props.app.state.autosave} onChange={this.props.app.update}>
+                            <option value={0}>Off</option>
+                            <option value={30000}>30 seconds</option>
+                            <option value={60000}>1 minute</option>
+                            <option value={300000}>5 minutes</option>
+                            <option value={600000}>10 minutes</option>
+                        </select>
+                    </div>
+                </div>
+
                 
                 <div className="setting-container">
                     <div className="label">

@@ -32,7 +32,7 @@ export function applyClassesToHTML(html, css, removeComments=false) {
 
     // first, get a list of all the CSS classes
     var cssClasses = {},
-        cssRegex = /\.([a-z0-9_-]+)\s+{([a-z0-9:;\-\s%|\\/ ]+)}/gi;
+        cssRegex = /\.([a-z0-9_-]+)\s+{([\s\S]+)}/gi;
 
     var tmp;
 
@@ -41,7 +41,6 @@ export function applyClassesToHTML(html, css, removeComments=false) {
             cssClasses[ tmp[1] ] = tmp[2].replace(/[\t\n{}]+/gm, "").trim();
         }
     }
-    console.log(cssClasses);
 
 
     // second, get a list of all the HTML tags with a class attribute
