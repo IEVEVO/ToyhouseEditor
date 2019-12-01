@@ -8,7 +8,7 @@ export class Loading extends React.Component {
     render() {
         return (
             <div className="loading-icon">
-                <img src="/img/loading.gif" alt="Loading ..." width="64" />
+                <img src="./img/loading.gif" alt="Loading ..." width="64" />
             </div>
         );
     }

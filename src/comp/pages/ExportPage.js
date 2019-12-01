@@ -22,11 +22,22 @@ export class ExportPage extends React.Component {
 
         
         fetchProfileById(this.props.app.state.activeProfile)
-            .then(profile => {
-                this.setState({
-                    name: profile[0].name,
-                    state: "idle"
-                });
+            .then(p => {
+                var profile = p[0];
+
+                if(profile === undefined) {
+                    this.setState({
+                        name: "",
+                        state: "idle"
+                    });
+                }
+                else {
+                    this.setState({
+                        name: profile.name,
+                        state: "idle"
+                    });
+                }
+
             })
             .catch(err => { 
                 console.error(err); 

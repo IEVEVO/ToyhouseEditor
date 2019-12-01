@@ -44,7 +44,7 @@ export class EditorPanel extends React.Component {
                     <NavLink to="/export">Export</NavLink>
                     <NavLink to="/settings">Settings</NavLink>
 
-                    <button onClick={this.toggle}>
+                    <button className="small toggle" onClick={this.toggle}>
                         {(this.state.open ? "<" : ">")}
                     </button>
                 </div>

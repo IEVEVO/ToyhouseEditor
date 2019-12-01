@@ -1,6 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import { fetchProfileById } from "../../db/themes";
+import { DefaultAvatar } from "../DefaultAvatar";
 
 export class ToyhouseSidebar extends React.Component {
     constructor(props) {
@@ -54,7 +55,7 @@ export class ToyhouseSidebar extends React.Component {
                     <li>
                         <span className="display-user">
                             <NavLink to="/settings/profiles">
-                                <img alt="Icon" src="https://i.imgur.com/sx4WgZh.jpg" className="display-user-avatar" />
+                                <DefaultAvatar alt="Icon" className="display-user-avatar" />
                                 <span className="display-user-username">{this.state.profileName}</span>
                             </NavLink>
                         </span>
@@ -71,7 +72,7 @@ export class ToyhouseSidebar extends React.Component {
                     
                     <li className="header">Links</li>
                     <li>
-                        <a href="https://toyhou.se" rel="noopener noreferrer" target="_blank">Toyhou.se</a>
+                        <a href="https://toyhou.se/~forums/16.htmlcss-graphics" rel="noopener noreferrer" target="_blank">Find themes</a>
                         <a href="https://acroma.rf.gd" rel="noopener noreferrer" target="_blank">Developer</a>
                     </li>
                 </ul>
