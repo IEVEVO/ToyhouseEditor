@@ -1,4 +1,4 @@
-# Toyhouse Profile Editor
+# [Toyhouse Profile Editor](http://toyhouseprofileeditor.netlify.com)
 
 [Toyhou.se](http://toyhou.se) doesn't support CSS classes in profile pages natively, and this compiled with the difficult editor can make it far more daunting to make themes and profile pages of your own, even if you can understand HTML.
 
@@ -32,3 +32,5 @@ If something goes wrong, leave a description of it [here](https://github.com/IEV
 You can download a version of this for offline use. The only thing that doesn't work is changing themes, to my knowledge. You might experience issues with profiles too, however, so I wouldn't save anything too important in there.
 
 All you need to do is download the latest version (.ZIP) from [here](https://github.com/IEVEVO/ToyhouseEditor/releases) and run the `index.html` file. I'd recommend extracting it into a folder first, but you don't have to.
+
+Alternatively, there's a demo up [here](http://toyhouseprofileeditor.netlify.com).
