@@ -1,0 +1,17 @@
+{
+	"short_name": "ToyhouseEditor",
+	"name": "Toyhouse Profile Editor",
+	"icons": [
+		{
+			"src": "./img/icon_sml.png",
+			"sizes": "144x144",
+			"type": "image/png",
+			"purpose": "any"
+		}
+	],
+	"start_url": ".",
+	"display": "standalone",
+	"orientation": "landscape",
+	"theme_color": "#3a879e",
+	"background_color": "#222222"
+}
