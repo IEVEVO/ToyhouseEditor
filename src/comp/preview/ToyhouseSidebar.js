@@ -25,6 +25,7 @@ export class ToyhouseSidebar extends React.Component {
         }
     }
 
+
     loadProfile() {
         // get the name of the active profile
         if(this.props.activeProfile === undefined || this.props.activeProfile === -1) {
@@ -71,7 +72,7 @@ export class ToyhouseSidebar extends React.Component {
                     <li className="header">Links</li>
                     <li>
                         <a href="https://toyhou.se" rel="noopener noreferrer" target="_blank">Toyhou.se</a>
-                        <a href="https://acroma.rf.gd" rel="noopener noreferrer" target="_blank">Dev</a>
+                        <a href="https://acroma.rf.gd" rel="noopener noreferrer" target="_blank">Developer</a>
                     </li>
                 </ul>
             </div>

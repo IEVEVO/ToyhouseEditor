@@ -103,7 +103,7 @@
 
 
 .settings-page { 
-    max-width: 500px;
+    max-width: 720px;
     margin: 0 auto 0 auto;
     padding-bottom: 100px;
 
@@ -125,7 +125,8 @@
 }
 
 .profile-selector {
-    width: 100%;
+    width: 100%; max-width: 720px;
+    margin: 0 auto 0 auto;
 
     .profile-icon {
         width: 100%;
@@ -174,6 +175,9 @@
 
 
 .export-page {
+    max-width: 1000px;
+    margin: 0 auto 0 auto;
+
     textarea {
         width: 100%;
         min-height: 300px;
@@ -186,6 +190,11 @@
         border: 0;
         padding: 5px 8px 5px 8px;
     }
+}
+
+.about-page {
+    max-width: 720px;
+    margin: 0 auto 0 auto;
 }
 
 

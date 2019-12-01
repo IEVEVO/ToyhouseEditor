@@ -58,9 +58,16 @@ button {
     margin: 25px auto 25px auto;
 }
 
+.loading-icon {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto 0 auto;
+}
+
 
 code {
-    color: $lightgrey;
+    background: $midgrey;
+    color: #bbb;
 }
 
 ul {

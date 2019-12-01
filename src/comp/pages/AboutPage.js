@@ -2,20 +2,9 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 
 export class AboutPage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-
-        };
-
-		//this.update = this.update.bind(this);
-    }
-
     render() {
-
         return (
-            <div className="export-page">
+            <div className="about-page">
                 <h1>Toyhouse Editor</h1>
                 
                 <p>

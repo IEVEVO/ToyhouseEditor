@@ -5,6 +5,7 @@ import { SettingsPage } from "./pages/SettingsPage";
 import { ExportPage } from "./pages/ExportPage";
 import { AboutPage } from "./pages/AboutPage";
 import { ProfileSelector } from "./settings/ProfileSelector";
+import { Loading } from "./Loading";
 
 export class EditorPanel extends React.Component {
     constructor(props) {
@@ -26,7 +27,7 @@ export class EditorPanel extends React.Component {
 
         // if first time loading
         if(this.props.app.state.state === "loading") {
-            return "Loading ...";
+            return <Loading />
         }
 
 

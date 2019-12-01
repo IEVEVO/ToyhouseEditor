@@ -2,6 +2,7 @@ import React from "react";
 import { fetchAll } from "../../db/themes";
 import { ProfileIcon } from "./ProfileIcon";
 import { SaveButton } from "../SaveButton";
+import { Loading } from "../Loading";
 
 export class ProfileSelector extends React.Component {
     constructor(props) {
@@ -72,7 +73,7 @@ export class ProfileSelector extends React.Component {
                     }
 
                     {
-                        this.state.state === "loading" ? "Loading ..." : 
+                        this.state.state === "loading" ? <Loading /> : 
                         (this.state.profiles.length === 0 ? "No profiles" : "")
                     }
 

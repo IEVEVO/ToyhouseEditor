@@ -1,6 +1,7 @@
 import React from "react";
 import Editor from '@monaco-editor/react';
 import { SaveButton } from "../SaveButton";
+import { Loading } from "../Loading";
 
 
 export class HTMLBox extends React.Component {
@@ -77,6 +78,7 @@ export class HTMLBox extends React.Component {
                     name="code"
                     placeholder={"Enter your " + this.props.language.toUpperCase() + " code here"}
                     language={this.props.language}
+                    loading={<Loading />}
                     options={{
                         wordWrap: "on",
                         fontSize: 14,
