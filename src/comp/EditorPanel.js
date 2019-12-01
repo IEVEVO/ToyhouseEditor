@@ -6,6 +6,7 @@ import { ExportPage } from "./pages/ExportPage";
 import { AboutPage } from "./pages/AboutPage";
 import { ProfileSelector } from "./settings/ProfileSelector";
 import { Loading } from "./Loading";
+import { KeyboardPage } from "./pages/KeyboardPage";
 
 export class EditorPanel extends React.Component {
     constructor(props) {
@@ -70,6 +71,10 @@ export class EditorPanel extends React.Component {
 
                 <Route path="/settings/profiles" render={(props) => {
                     return <ProfileSelector app={this.props.app} />
+                }} />
+
+                <Route path="/settings/keyboard" render={(props) => {
+                    return <KeyboardPage app={this.props.app} />
                 }} />
             </div>
         );

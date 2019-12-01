@@ -85,6 +85,10 @@ export class SettingsPage extends React.Component {
                 <NavLink to="/settings/profiles">
                     <button className="submit primary">Manage Profiles</button>
                 </NavLink>
+
+                <NavLink to="/settings/keyboard">
+                    <button className="submit">Shortcuts</button>
+                </NavLink>
             </div>
         );
     }
