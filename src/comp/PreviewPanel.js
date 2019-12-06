@@ -19,6 +19,17 @@ export class PreviewPanel extends React.Component {
     componentDidMount() {
         // render whatever's in the fields on mount
         this.loadTheme();
+
+
+        // load fontawesome on mount
+        window.setTimeout(() => {
+            var newLink = document.createElement("link");
+            newLink.rel = "stylesheet";
+            newLink.type = "text/css";
+            newLink.href = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+            document.getElementsByTagName("head")[0].appendChild(newLink);
+        }, 1000);
     }
 
     componentDidUpdate(prevProps) {
@@ -36,7 +47,7 @@ export class PreviewPanel extends React.Component {
 
     loadTheme() {
         // loads the current theme
-        var oldLink = document.getElementsByTagName("link")[6];
+        var oldLink = document.getElementsByTagName("link")[5];
 
         var newLink = document.createElement("link");
         newLink.rel = "stylesheet";
