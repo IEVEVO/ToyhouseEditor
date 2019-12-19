@@ -45,7 +45,7 @@ export function applyClassesToHTML(html, css, removeComments=false) {
 
     // second, get a list of all the HTML tags with a class attribute
     var newHTML = html,
-        codeRegex = /<[a-z ]+\s+(className=['"][a-z\-_0-9 ]+["'])[/a-z0-9:;\-_"' ]*>/gi,
+        codeRegex = /<[a-z0-9 ]+\s+(className=['"][a-z\-_0-9 ]+["'])[/a-z0-9:;\-_"' ]*>/gi,
         htmlTags = [];
 
     tmp = null;
