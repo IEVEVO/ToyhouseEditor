@@ -32,7 +32,7 @@ export function applyClassesToHTML(html, css, removeComments=false) {
 
     // first, get a list of all the CSS classes
     var cssClasses = {},
-        cssRegex = /\.([a-z0-9_-]+)\s+{([\s\S]+)}/gi;
+        cssRegex = /\.([a-z0-9_-]+)\s+{([^}]+)}/gi;
 
     var tmp;
 
