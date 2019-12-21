@@ -1,8 +1,11 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import { ToyhouseProfile } from "./preview/ToyhouseProfile";
 import { applyClassesToHTML } from "../_general";
-import { CharacterProfileInner } from "./preview/CharacterProfileInner";
-import { UserProfileInner } from "./preview/UserProfileInner";
+import { Loading } from "./Loading";
+
+const CharacterProfileInner = lazy(() => import("./preview/CharacterProfileInner"));
+const UserProfileInner = lazy(() => import("./preview/UserProfileInner"));
+
 
 export class PreviewPanel extends React.Component {
     constructor(props) {
@@ -34,7 +37,12 @@ export class PreviewPanel extends React.Component {
 
     componentDidUpdate(prevProps) {
         // update html in frame
-        document.getElementById("preview-div").innerHTML = applyClassesToHTML(this.props.app.state.html, this.props.app.state.css, this.props.app.state.removeComments);
+        try {
+            document.getElementById("preview-div").innerHTML = applyClassesToHTML(this.props.app.state.html, this.props.app.state.css, this.props.app.state.removeComments);
+        }
+        catch(err) {
+            console.error(err);
+        }
 
 
         // update theme if that changed at all
@@ -64,21 +72,29 @@ export class PreviewPanel extends React.Component {
         var page;
 
         switch(this.props.app.state.pageLayout) {
+            case "empty":
+                // empty
+                page = <div id="preview-div" />
+                break;
             case "user":
                 // user profile
                 page = (
-                    <UserProfileInner app={this.props.app}>
-                        <div id="preview-div" />
-                    </UserProfileInner>
+                    <Suspense fallback={<Loading />}>
+                        <UserProfileInner app={this.props.app}>
+                            <div id="preview-div" />
+                        </UserProfileInner>
+                    </Suspense>
                 );
 
                 break;
             case "character":
                 // character profile
                 page = (
-                    <CharacterProfileInner app={this.props.app}>
-                        <div id="preview-div" />
-                    </CharacterProfileInner>
+                    <Suspense fallback={<Loading />}>
+                        <CharacterProfileInner app={this.props.app}>
+                            <div id="preview-div" />
+                        </CharacterProfileInner>
+                    </Suspense>
                 );
 
                 break;
