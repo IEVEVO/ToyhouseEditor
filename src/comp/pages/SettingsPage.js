@@ -29,6 +29,7 @@ export class SettingsPage extends React.Component {
                         <select name="pageLayout" value={this.props.app.state.pageLayout} onChange={this.props.app.update}>
                             <option value="user">User profile</option>
                             <option value="character">Character profile</option>
+                            <option value="empty">Blank</option>
                         </select>
                     </div>
                 </div>

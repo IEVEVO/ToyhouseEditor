@@ -2,7 +2,7 @@ import React from "react";
 import { DefaultAvatar } from "../DefaultAvatar";
 
 
-export class CharacterProfileInner extends React.Component {
+export default class CharacterProfileInner extends React.Component {
     render() {
         return (
             <div className="col-sm-12 col-md-9 col-lg-10 content-main" id="content">

@@ -1,6 +1,6 @@
 import React from "react";
 
-export class UserProfileInner extends React.Component {
+export default class UserProfileInner extends React.Component {
     render() {
         
         return (
